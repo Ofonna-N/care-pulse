@@ -7,7 +7,11 @@ type Props = {
 };
 
 const AppProviders = ({ children }: Props) => {
-  return <Theme>{children}</Theme>;
+  return (
+    <Theme appearance="dark" accentColor="green">
+      {children}
+    </Theme>
+  );
 };
 
 export default AppProviders;
