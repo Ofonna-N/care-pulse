@@ -1,4 +1,4 @@
-import OnboardingForm from "./compenents/onboarding_form";
+import OnboardingForm from "./components/onboarding_form";
 
 export default function OnBoardingPage() {
   return (
