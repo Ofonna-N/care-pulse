@@ -1,5 +1,4 @@
-import { CpTextField } from "@/app/components/_index";
-import { Button } from "@radix-ui/themes";
+import OnboardingForm from "./compenents/onboarding_form";
 
 export default function OnBoardingPage() {
   return (
@@ -11,44 +10,7 @@ export default function OnBoardingPage() {
             <h3 className="text-[35px] py-4">Hi there, ...</h3>
             <p className="text-[18px]">Get started with appointments.</p>
           </div>
-          <form className="pr-[100px]">
-            <CpTextField
-              labelProps={{
-                id: "full-name",
-              }}
-              textInputFieldProps={{
-                placeholder: "Full name",
-              }}
-            >
-              Full name
-            </CpTextField>
-            <CpTextField
-              labelProps={{
-                id: "email",
-              }}
-              textInputFieldProps={{
-                placeholder: "Email",
-                type: "email",
-              }}
-            >
-              Email
-            </CpTextField>
-            <CpTextField
-              labelProps={{
-                id: "phone-number",
-                className: "mb-8",
-              }}
-              textInputFieldProps={{
-                placeholder: "+1 (555) 555-5555",
-              }}
-            >
-              Phone number
-            </CpTextField>
-
-            <Button size={"3"} className="w-full max-w-[350px] cursor-pointer">
-              Get Started
-            </Button>
-          </form>
+          <OnboardingForm />
         </div>
       </div>
       <div className="h-screen w-[50%] bg-red-800"></div>
