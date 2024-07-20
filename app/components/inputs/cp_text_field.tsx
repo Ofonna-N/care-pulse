@@ -9,6 +9,11 @@ type Props = {
   >;
   textInputFieldProps?: TextField.RootProps &
     React.RefAttributes<HTMLInputElement>;
+
+  errorTextProps?: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLElement>,
+    HTMLElement
+  >;
   children?: React.ReactNode;
 };
 
@@ -21,10 +26,16 @@ const CpTextField = (props: Props) => {
   } = props.labelProps ?? {};
 
   const {
-    children: textFiledChildren,
-    className,
+    children: textFieldChildren,
+    className: textFieldClassName,
     ...otherTextFieldProps
   } = props.textInputFieldProps ?? {};
+
+  const {
+    children: errorTextPropsChildren,
+    className: errorTextPropsClassName,
+    ...otherErrorTextProps
+  } = props.errorTextProps ?? {};
 
   return (
     <label
@@ -37,11 +48,21 @@ const CpTextField = (props: Props) => {
         size={"3"}
         type="text"
         variant="surface"
-        className={cn("max-w-[350px]", className)}
+        className={cn("max-w-[350px]", textFieldClassName)}
         {...otherTextFieldProps}
       >
-        {textFiledChildren}
+        {textFieldChildren}
       </TextField.Root>
+      <small
+        className={cn(
+          "text-red-700",
+          !!errorTextPropsChildren && "py-1",
+          errorTextPropsClassName
+        )}
+        {...otherErrorTextProps}
+      >
+        {errorTextPropsChildren}
+      </small>
     </label>
   );
 };
