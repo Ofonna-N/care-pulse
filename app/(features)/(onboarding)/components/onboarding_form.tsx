@@ -1,10 +1,19 @@
 "use client";
 import { CpTextField } from "@/app/components/_index";
-import { Button } from "@radix-ui/themes";
+import { Button, TextField } from "@radix-ui/themes";
+import "react-phone-number-input/style.css";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import {
+  Controller,
+  ControllerFieldState,
+  ControllerRenderProps,
+  FieldValues,
+  useForm,
+  UseFormStateReturn,
+} from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
 
 const onBoardingFormSchema = z.object({
   fullName: z.string().min(5).trim(),
@@ -18,6 +27,7 @@ const OnboardingForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<OnBoardingFormSchema>({
     resolver: zodResolver(onBoardingFormSchema),
@@ -27,10 +37,12 @@ const OnboardingForm = () => {
     console.log(data);
   };
   return (
-    <form
-      className="pr-[100px]"
-      onSubmit={handleSubmit(onSubmitOnboardingData)}
-    >
+    <form onSubmit={handleSubmit(onSubmitOnboardingData)} className="container">
+      <section className="mb-[50px]">
+        <h1 className="text-[34px] mb-[80px]">CarePulse</h1>
+        <h3 className="text-[35px] py-4">Hi there, ...</h3>
+        <p className="text-[18px]">Get started with appointments.</p>
+      </section>
       <CpTextField
         labelProps={{
           id: "full-name",
@@ -60,21 +72,29 @@ const OnboardingForm = () => {
       >
         Email
       </CpTextField>
-      <CpTextField
-        labelProps={{
-          id: "phone-number",
-          className: "mb-8",
+      <Controller
+        control={control}
+        name={"phoneNumber"}
+        render={function ({
+          field,
+          fieldState,
+          formState,
+        }): React.ReactElement {
+          return (
+            <PhoneInput
+              inputComponent={TextField.Root}
+              size={"3"}
+              placeholder="Enter phone number"
+              defaultCountry="US"
+              value={field.value}
+              onChange={(value) => field.onChange(value)}
+              className="mb-8 max-w-[350px]"
+              countryCallingCodeEditable
+              international
+            />
+          );
         }}
-        textInputFieldProps={{
-          placeholder: "+1 (555) 555-5555",
-          ...register("phoneNumber"),
-        }}
-        errorTextProps={{
-          children: errors.phoneNumber?.message,
-        }}
-      >
-        Phone number
-      </CpTextField>
+      />
 
       <Button size={"3"} className="w-full max-w-[350px] cursor-pointer">
         Get Started

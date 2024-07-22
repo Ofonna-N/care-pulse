@@ -6,7 +6,7 @@ import AppProviders from "../../context/app_providers";
 const jakartaSansInter = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--jakarta-sans",
-  // weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={jakartaSansInter.className}>
+    <html lang="en" className={jakartaSansInter.className}>
+      <body>
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

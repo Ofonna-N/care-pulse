@@ -1,19 +1,25 @@
 import OnboardingForm from "./components/onboarding_form";
+import onBoardingImage from "./assets/onboarding-image.jpg";
+import Image from "next/image";
 
 export default function OnBoardingPage() {
   return (
     <div className="h-screen flex">
-      <div className="h-screen w-[50%]  px-[110px] pt-[70px]">
-        <h1 className="text-[34px] mb-[80px]">CarePulse</h1>
-        <div>
-          <div className="mb-[50px]">
-            <h3 className="text-[35px] py-4">Hi there, ...</h3>
-            <p className="text-[18px]">Get started with appointments.</p>
-          </div>
+      <div className="h-screen w-[50%] flex items-center">
+        <div className="w-[400px] mx-auto">
           <OnboardingForm />
         </div>
       </div>
-      <div className="h-screen w-[50%] bg-red-800"></div>
+      <div className="h-screen w-[50%] max-w-[50%] bg-red-800 relative flex-1">
+        {/* <div className="bg-green-500 w-full h-full"> */}{" "}
+        <Image
+          src={onBoardingImage}
+          alt={"onboarding image"}
+          layout="fill"
+          objectFit="cover"
+        />
+        {/* </div> */}
+      </div>
     </div>
   );
 }
