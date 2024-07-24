@@ -1,12 +1,12 @@
 import cn from "@/app/utils/cn";
 import React from "react";
 
-type Props = React.DetailedHTMLProps<
+export type CPErrorTextProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
   HTMLElement
 > & { value?: React.ReactNode };
 
-const CPErrorText = (props: Props) => {
+const CPErrorText = (props: CPErrorTextProps) => {
   return (
     <small
       className={cn(
