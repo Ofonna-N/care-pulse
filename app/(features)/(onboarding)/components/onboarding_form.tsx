@@ -1,24 +1,17 @@
 "use client";
-import { CpTextField } from "@/app/components/_index";
+import { CPErrorText, CpTextField } from "@/app/components/_index";
 import { Button, TextField } from "@radix-ui/themes";
 import "react-phone-number-input/style.css";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  Controller,
-  ControllerFieldState,
-  ControllerRenderProps,
-  FieldValues,
-  useForm,
-  UseFormStateReturn,
-} from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 
 const onBoardingFormSchema = z.object({
   fullName: z.string().min(5).trim(),
   email: z.string().email(),
-  phoneNumber: z.string().min(10),
+  phoneNumber: z.string().min(10).trim(),
 });
 
 type OnBoardingFormSchema = z.infer<typeof onBoardingFormSchema>;
@@ -77,21 +70,22 @@ const OnboardingForm = () => {
         name={"phoneNumber"}
         render={function ({
           field,
-          fieldState,
-          formState,
+          fieldState: { error },
         }): React.ReactElement {
           return (
-            <PhoneInput
-              inputComponent={TextField.Root}
-              size={"3"}
-              placeholder="Enter phone number"
-              defaultCountry="US"
-              value={field.value}
-              onChange={(value) => field.onChange(value)}
-              className="mb-8 max-w-[350px]"
-              countryCallingCodeEditable
-              international
-            />
+            <div className="mb-8 max-w-[350px]">
+              <PhoneInput
+                inputComponent={TextField.Root}
+                size={"3"}
+                placeholder="Enter phone number"
+                defaultCountry="US"
+                value={field.value}
+                onChange={(value) => field.onChange(value)}
+                countryCallingCodeEditable
+                international
+              />
+              <CPErrorText errorMesssage={error?.message} />
+            </div>
           );
         }}
       />
