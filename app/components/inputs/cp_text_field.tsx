@@ -9,7 +9,7 @@ type Props = {
     HTMLLabelElement
   >;
   textInputFieldProps?: TextField.RootProps &
-    React.RefAttributes<HTMLInputElement>;
+    React.RefAttributes<HTMLInputElement> & { fullwidth?: boolean };
 
   errorTextProps?: CPErrorTextProps;
   children?: React.ReactNode;
@@ -47,7 +47,11 @@ const CpTextField = (props: Props) => {
         size={"3"}
         type="text"
         variant="surface"
-        className={cn("max-w-[350px]", textFieldClassName)}
+        className={cn(
+          "max-w-[350px]",
+          textFieldClassName,
+          props.textInputFieldProps?.fullwidth && "w-full"
+        )}
         {...otherTextFieldProps}
       >
         {textFieldChildren}
