@@ -1,6 +1,7 @@
 import cn from "@/app/utils/cn";
 import { TextField } from "@radix-ui/themes";
 import React from "react";
+import { CPErrorText, CPErrorTextProps } from "../_index";
 
 type Props = {
   labelProps?: React.DetailedHTMLProps<
@@ -10,10 +11,7 @@ type Props = {
   textInputFieldProps?: TextField.RootProps &
     React.RefAttributes<HTMLInputElement>;
 
-  errorTextProps?: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
-  >;
+  errorTextProps?: CPErrorTextProps;
   children?: React.ReactNode;
 };
 
@@ -34,6 +32,7 @@ const CpTextField = (props: Props) => {
   const {
     children: errorTextPropsChildren,
     className: errorTextPropsClassName,
+    value: errorTextPropsValue,
     ...otherErrorTextProps
   } = props.errorTextProps ?? {};
 
@@ -53,16 +52,9 @@ const CpTextField = (props: Props) => {
       >
         {textFieldChildren}
       </TextField.Root>
-      <small
-        className={cn(
-          "text-red-700",
-          !!errorTextPropsChildren && "py-1",
-          errorTextPropsClassName
-        )}
-        {...otherErrorTextProps}
-      >
-        {errorTextPropsChildren}
-      </small>
+      <CPErrorText {...otherErrorTextProps}>
+        {errorTextPropsValue ?? errorTextPropsChildren}
+      </CPErrorText>
     </label>
   );
 };
