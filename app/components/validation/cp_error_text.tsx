@@ -4,7 +4,7 @@ import React from "react";
 export type CPErrorTextProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
   HTMLElement
-> & { value?: React.ReactNode };
+> & { errorMesssage?: React.ReactNode };
 
 const CPErrorText = (props: CPErrorTextProps) => {
   return (
@@ -12,13 +12,13 @@ const CPErrorText = (props: CPErrorTextProps) => {
       className={cn(
         "text-red-700",
         {
-          ["py-1"]: !!props?.value || !!props.children || false,
+          ["py-1"]: !!props?.errorMesssage || !!props.children || false,
         },
         props.className
       )}
       {...props}
     >
-      {props.value ?? props.children}
+      {props.errorMesssage ?? props.children}
     </small>
   );
 };

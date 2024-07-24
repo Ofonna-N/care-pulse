@@ -32,7 +32,7 @@ const CpTextField = (props: Props) => {
   const {
     children: errorTextPropsChildren,
     className: errorTextPropsClassName,
-    value: errorTextPropsValue,
+    errorMesssage: errorTextPropsValue,
     ...otherErrorTextProps
   } = props.errorTextProps ?? {};
 
