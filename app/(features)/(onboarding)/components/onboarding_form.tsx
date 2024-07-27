@@ -30,7 +30,7 @@ const OnboardingForm = () => {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmitOnboardingData)} className="container">
+    <form onSubmit={handleSubmit(onSubmitOnboardingData)} className="w-[350px]">
       <section className="mb-[50px]">
         <h1 className="text-[34px] mb-[80px]">CarePulse</h1>
         <h3 className="text-[35px] py-4">Hi there, ...</h3>
